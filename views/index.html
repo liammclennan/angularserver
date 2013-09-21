@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="angularserverApp">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,22 +56,7 @@
       </div>
     </div>
 
-    <div class="container">
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron" ng-app>
-        <h1>Angular Server</h1>
-        <p>
-        <p>This page provides a demonstration of, and starter for, an application built on angular server. Each time it loads it writes a new Person resource (always called Fred) with a random age. It then reads the `people` collection and renders them.</p>
-        <p>By default resourceserver is configured to write to its in-memory data store, so all data is lost when the server terminates. You can change the configuration to write to redis instead, or implement your own custom persister.</p>
-        <div id="app" ng-cloak ng-controller="appController">
-                <div ng-repeat="p in people" class="alert alert-success" >
-                {{ p.name + ' is ' + p.age.toFixed(0) + ' years old' }}
-                </div>
-        </div>
-        </p>
-      </div>
-
+    <div class="container" ng-view>
     </div> <!-- /container -->
 
     <script src="/scripts/jquery.min.js"></script>
@@ -79,27 +64,6 @@
     <script src="/scripts/underscore.js"></script>
     <script src="/scripts/dbc.js"></script>
     <script src="/scripts/client.js"></script>
-    <script type="text/javascript">
-
-        function Person(data) {
-            this.name = data.name;
-            this.age = data.age;
-        }
-        Person.url = '//localhost:3001/people';
-
-        function appController($scope, $rootScope) {
-           var personGateway = resourceclient(Person);
-           personGateway.create(new Person({
-                name: 'Fred',
-                age: Math.random() * 100
-            })).then(function (person) {
-                return personGateway.get();
-            }).then(function (people) {
-                $scope.people = people;
-                $scope.$apply();
-            });
-        }
-    </script>
-
+    <script src="/scripts/app.js"></script>
   </body>
 </html>
