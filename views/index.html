@@ -1,0 +1,36 @@
+<html><body ng-app>
+    <h2>Angular Server</h2>
+    <p>This page provides a demonstration of, and starter for, an application built on angular server. Each time it loads it writes a new Person resource (always called Fred) with a random age. It then reads the `people` collection and renders them.</p>
+    <p>By default resourceserver is configured to write to its in-memory data store, so all data is lost when the server terminates. You can change the configuration to write to redis instead, or implement your own custom persister.</p>
+    <div id="app" ng-cloak ng-controller="appController">
+        <div ng-repeat="p in people" >
+            {{ p.name + ' is ' + p.age.toFixed(0) + ' years old' }}
+        </div>
+    </div>    
+    <script src="/scripts/jquery.min.js"></script>
+    <script src="/scripts/angular.js"></script>
+    <script src="/scripts/underscore.js"></script>
+    <script src="/scripts/dbc.js"></script>
+    <script src="/scripts/client.js"></script>
+    <script type="text/javascript">
+
+        function Person(data) {
+            this.name = data.name;
+            this.age = data.age;
+        }
+        Person.url = '//localhost:3001/people';
+
+        function appController($scope, $rootScope) {
+           var personGateway = resourceclient(Person);
+           personGateway.create(new Person({
+                name: 'Fred',
+                age: Math.random() * 100
+            })).then(function (person) {
+                return personGateway.get();
+            }).then(function (people) {
+                $scope.people = people;
+                $scope.$apply();
+            });
+        }    
+    </script>
+</body></html>
