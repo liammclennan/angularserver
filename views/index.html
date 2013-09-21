@@ -1,12 +1,79 @@
-<html><body ng-app>
-    <h2>Angular Server</h2>
-    <p>This page provides a demonstration of, and starter for, an application built on angular server. Each time it loads it writes a new Person resource (always called Fred) with a random age. It then reads the `people` collection and renders them.</p>
-    <p>By default resourceserver is configured to write to its in-memory data store, so all data is lost when the server terminates. You can change the configuration to write to redis instead, or implement your own custom persister.</p>
-    <div id="app" ng-cloak ng-controller="appController">
-        <div ng-repeat="p in people" >
-            {{ p.name + ' is ' + p.age.toFixed(0) + ' years old' }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>Angular Server Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/navbar-fixed-top.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
         </div>
-    </div>    
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron" ng-app>
+        <h1>Angular Server</h1>
+        <p>
+        <p>This page provides a demonstration of, and starter for, an application built on angular server. Each time it loads it writes a new Person resource (always called Fred) with a random age. It then reads the `people` collection and renders them.</p>
+        <p>By default resourceserver is configured to write to its in-memory data store, so all data is lost when the server terminates. You can change the configuration to write to redis instead, or implement your own custom persister.</p>
+        <div id="app" ng-cloak ng-controller="appController">
+                <div ng-repeat="p in people" class="alert alert-success" >
+                {{ p.name + ' is ' + p.age.toFixed(0) + ' years old' }}
+                </div>
+        </div>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
     <script src="/scripts/jquery.min.js"></script>
     <script src="/scripts/angular.js"></script>
     <script src="/scripts/underscore.js"></script>
@@ -31,6 +98,8 @@
                 $scope.people = people;
                 $scope.$apply();
             });
-        }    
+        }
     </script>
-</body></html>
+
+  </body>
+</html>

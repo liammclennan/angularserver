@@ -4,6 +4,7 @@
   "description": "Standard server for angularjs",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -13,6 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "~3.4.0",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "dbc": "~3.0.0",
+    "resourceserver": "~1.0.0"
   }
 }
