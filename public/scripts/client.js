@@ -6,7 +6,6 @@
         
         dbc.required(ctor);
         dbc.isFunction(ctor);
-        dbc.required(ctor.url, 'Cannot build a gateway for a ctor that does not have a url property');
         
         return {
             get: function (id) {

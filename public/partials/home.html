@@ -1,0 +1,15 @@
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="jumbotron" >
+<h1>Angular Server</h1>
+<p>
+<p>This page provides a demonstration of, and starter for, an application built on angular server. Each time it loads it writes a new Person resource (always called Fred and with a random age) to the server. It then reads the `people` collection and renders them.</p>
+<p>By default resourceserver is configured to write to its in-memory data store, so all data is lost when the server terminates. You can change the configuration to write to redis instead, or implement your own custom persister.</p>
+<div id="app" ng-cloak >
+        <div ng-repeat="p in people" class="alert alert-success" >
+        {{ p.name + ' is ' + p.age.toFixed(0) + ' years old' }}
+        </div>
+</div>
+</p>
+</div>
+
